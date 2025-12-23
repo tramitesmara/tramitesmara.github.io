@@ -1,0 +1,779 @@
+/* =========================================
+   1. VARIABLES, RESET Y BASE
+   ========================================= */
+:root {
+    --color-rojo: #E60000;
+    --color-negro: #1A1A1A;
+    --color-blanco: #FFFFFF;
+    --color-gris-claro: #F4F4F4;
+    --color-texto-gris: #555555;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: var(--color-blanco);
+    color: var(--color-texto-gris);
+}
+
+/* =========================================
+   2. SISTEMA DE REJILLA (GRID RESPONSIVE)
+   ========================================= */
+.contenedor {
+    position: relative;
+    margin: auto;
+    width: 90%;
+    max-width: 1200px;
+    height: auto;
+}
+
+.fila {
+    position: relative;
+    margin: auto;
+    width: 100%;
+    height: auto;
+}
+
+/* Limpiar floats (Crucial para tu grid) */
+.fila::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+}
+
+/* Breakpoints */
+@media(min-width: 1200px){ .col-lg-12{width: 100%;} .col-lg-6{width: 50%;} .col-lg-4{width: 33.33%;} .col-lg-3{width: 25%;} }
+@media(max-width: 1199px)and (min-width: 992px){ .col-md-12{width: 100%;} .col-md-6{width: 50%;} .col-md-4{width: 33.33%;} .col-md-3{width: 25%;} }
+@media(max-width: 991px)and (min-width: 768px){ .col-sm-12{width: 100%;} .col-sm-6{width: 50%;} }
+@media(max-width: 767px){ .col-xs-12{width: 100%;} }
+
+/* =========================================
+   3. UTILIDADES Y TIPOGRAFÍA GLOBAL
+   ========================================= */
+.seccion-padding { padding: 60px 0; }
+.seccion-gris { background-color: var(--color-gris-claro); }
+.fondo-gris-suave { background-color: #F9F9F9; }
+.texto-rojo { color: var(--color-rojo); }
+.texto-blanco { color: #FFFFFF !important; }
+.texto-gris-claro { color: #CCCCCC !important; margin-bottom: 60px; font-weight: 300; letter-spacing: 0.5px;}
+
+/* Títulos Globales */
+.titulo-centro { text-align: center; font-family: 'Montserrat', sans-serif; font-size: 2.5rem; color: var(--color-negro); }
+.subtitulo-centro { text-align: center; font-size: 1.2rem; margin-bottom: 30px; }
+.titulo-izquierda { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; color: var(--color-negro); margin-bottom: 15px;}
+
+/* =========================================
+   4. COMPONENTES GLOBALES (NAV Y BOTONES)
+   ========================================= */
+
+/* Navegación */
+nav { border-bottom: 1px solid #eee; padding: 10px 0; }
+.nav-container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;}
+.logo-texto { font-family: 'Montserrat', sans-serif; font-weight: 800; color: var(--color-negro); }
+
+.menu-links { list-style: none; }
+.menu-links li { display: inline-block; margin-left: 20px; }
+.menu-links a { text-decoration: none; color: var(--color-negro); font-weight: 700; }
+.menu-links a:hover { color: var(--color-rojo); }
+
+/* Botones Generales */
+.btn-rojo {
+    display: inline-block;
+    background-color: var(--color-rojo);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: 0.3s;
+    border: 2px solid var(--color-rojo);
+}
+.btn-rojo:hover { background-color: #b30000; border-color: #b30000; }
+
+.btn-blanco {
+    display: inline-block;
+    background-color: transparent;
+    color: var(--color-rojo);
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    border: 2px solid var(--color-rojo);
+    transition: 0.3s;
+}
+.btn-blanco:hover { background-color: var(--color-rojo); color: white; }
+
+.btn-grande { width: 100%; text-align: center; max-width: 300px; }
+
+/* =========================================
+   5. SECCIÓN INICIO (HERO BANNER)
+   ========================================= */
+.hero-section {
+    min-height: 600px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.hero-container {
+    background-image: 
+        linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 100%),
+        url('../imagenes/carrorojo.jpg'); 
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    padding: 0; 
+}
+
+.hero-content {
+    max-width: 600px;
+    padding: 40px;
+    margin-left: 5%;
+}
+
+.hero-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 3.5rem;
+    line-height: 1.1;
+    color: var(--color-blanco);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.texto-rojo-brillante { color: #FF3333; }
+
+.hero-description {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.3rem;
+    color: #F4F4F4;
+    margin-bottom: 40px;
+    line-height: 1.6;
+    max-width: 90%;
+}
+
+/* Botón Especial del Hero */
+.btn-hero {
+    display: inline-block;
+    background-color: var(--color-rojo);
+    color: var(--color-blanco);
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    border: 2px solid var(--color-rojo);
+    text-transform: uppercase;
+}
+.btn-hero:hover {
+    background-color: transparent;
+    color: var(--color-rojo);
+    border-color: var(--color-rojo);
+}
+
+/* =========================================
+   6. SECCIÓN "QUIÉNES SOMOS" 
+   ========================================= */
+.seccion-quienes-fondo {
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+        url('../imagenes/fondo-ciudad.jpg'); 
+    background-size: cover;      
+    background-position: center; 
+    border-radius: 15px;         
+    margin-bottom: 30px;         
+}
+
+.encabezado-quienes {
+    max-width: 800px;
+    margin: 0 auto 50px auto;
+    text-align: center;
+}
+
+.descripcion-quienes {
+    font-size: 1.2rem;
+    color: var(--color-texto-gris);
+    line-height: 1.6;
+    margin-top: 15px;
+}
+
+.card-quienes {
+    background-color: var(--color-blanco);
+    border-radius: 20px;
+    padding: 40px 25px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+    margin-bottom: 30px;
+    height: 100%;
+}
+.card-quienes:hover { transform: translateY(-10px); }
+
+.card-quienes h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: var(--color-negro);
+    margin-bottom: 15px;
+}
+
+.card-quienes p { font-size: 1rem; color: var(--color-texto-gris); }
+
+.icono-circulo {
+    width: 90px;
+    height: 90px;
+    background-color: var(--color-rojo);
+    color: var(--color-blanco);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px auto;
+    font-size: 2.5rem;
+}
+
+.boton-contenedor-centro { text-align: center; margin-top: 20px; }
+
+/* =========================================
+   7. SECCIÓN NUESTROS SERVICIOS (FONDO OSCURO)
+   ========================================= */
+
+/* 1. Convertimos el contenedor de la sección en Flex */
+.seccion-servicios-fondo {
+    /* Mantenemos tu imagen de fondo */
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
+        url('../imagenes/carrosparking.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding-bottom: 80px;
+
+    /* --- AQUÍ ESTÁ LA MAGIA --- */
+    display: flex;      /* Activa el modo flexible */
+    flex-wrap: wrap;    
+    /* Esto hace que todas las columnas de una fila tengan la misma altura */
+}
+
+
+.seccion-servicios-fondo > [class*="col-"] {
+    float: none; 
+    display: flex; 
+    flex-direction: column;
+}
+
+
+.card-servicio {
+    background: #FFFFFF;
+    padding: 40px 25px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+    
+    /* Esto asegura que la tarjeta ocupe toda la altura disponible */
+    height: 100%; 
+    width: 100%;
+    
+    /* Para centrar contenido verticalmente */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Efecto Hover: La tarjeta sube y brilla un poco */
+.card-servicio:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+/* 4. Iconos más elegantes */
+.icono-servicio-rojo {
+    font-size: 2.2rem;
+    color: var(--color-rojo);
+    margin-bottom: 25px;
+    
+    /* Círculo decorativo */
+    width: 80px;
+    height: 80px;
+    border: 2px solid rgba(230, 0, 0, 0.1); /* Borde rojo muy sutil */
+    border-radius: 50%;
+    display: flex;            /* Centrar el icono en el círculo */
+    align-items: center;
+    justify-content: center;
+    background-color: #FFF5F5; /* Fondo rosado muy pálido */
+    transition: all 0.3s ease;
+}
+
+/* Al pasar el mouse por la tarjeta, el icono se vuelve rojo sólido */
+.card-servicio:hover .icono-servicio-rojo {
+    background-color: var(--color-rojo);
+    color: #FFFFFF;
+    border-color: var(--color-rojo);
+}
+
+/* 5. Tipografía mejorada */
+.card-servicio h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--color-negro);
+    margin-bottom: 15px;
+    line-height: 1.3;
+}
+
+.card-servicio p {
+    font-size: 0.95rem;
+    color: var(--color-texto-gris);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* =========================================
+   ESTILOS SECCIÓN CÓMO FUNCIONA (Ref. Imagen)
+   ========================================= */
+
+/* Contenedor simple para centrar el contenido de cada paso */
+.paso-flotante {
+    text-align: center;
+    padding: 20px 10px;
+    /* Sin background, sin borde, sin sombra (como la referencia) */
+}
+
+/* Título del paso (Debajo del icono) */
+.paso-flotante h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800; /* Bien negrita como en la imagen */
+    font-size: 1.3rem;
+    color: var(--color-negro);
+    margin-bottom: 15px;
+}
+
+/* Descripción del paso */
+.paso-flotante p {
+    font-size: 1.05rem;
+    color: var(--color-texto-gris);
+    line-height: 1.5;
+    max-width: 250px; /* Limita el ancho para que el texto se vea compacto */
+    margin: 0 auto;   /* Centra el bloque de texto */
+}
+
+/* NOTA: Estamos reutilizando la clase .icono-circulo que ya tenías
+   definida en la sección "Quiénes somos". No hace falta repetirla. */
+
+/* =========================================
+   SECCIÓN TIMELINE (FONDO OSCURO Y CÍRCULOS)
+   ========================================= */
+
+.seccion-timeline {
+    /* Fondo con imagen oscurecida (interior de auto) */
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+        url('../imagenes/fondo-volante.jpg'); /* <--- PON TU FOTO AQUÍ */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Efecto elegante */
+    color: white;
+}
+
+.encabezado-timeline {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 50px auto;
+}
+
+/* Wrapper que contiene la línea horizontal */
+.wrapper-linea {
+    position: relative;
+    padding-top: 20px;
+}
+
+/* LA LÍNEA HORIZONTAL FINA */
+.wrapper-linea::before {
+    content: '';
+    position: absolute;
+    top: 60px; /* Altura calculada para estar al centro de los círculos */
+    left: 10%; /* Empieza un poco adentro */
+    right: 10%; /* Termina un poco antes */
+    height: 1px; /* Línea muy fina */
+    background-color: rgba(255, 255, 255, 0.5); /* Blanco semitransparente */
+    z-index: 1; /* Detrás de los círculos */
+}
+
+/* El Ítem Individual */
+.item-timeline {
+    text-align: center;
+    position: relative;
+    z-index: 2; /* Para estar encima de la línea */
+    padding: 0 15px;
+    margin-bottom: 30px;
+}
+
+/* El Círculo Blanco con Borde Rojo */
+.circulo-timeline {
+    width: 80px;
+    height: 80px;
+    background-color: #FFFFFF; /* Fondo Blanco */
+    border: 4px solid var(--color-rojo); /* Borde Rojo Grueso */
+    border-radius: 50%;
+    margin: 0 auto 25px auto;
+    /* Opcional: Sombra para darle volumen */
+    box-shadow: 0 0 20px rgba(230, 0, 0, 0.4);
+}
+
+/* Tipografía */
+.item-timeline h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: #FFFFFF;
+}
+
+.item-timeline p {
+    font-family: 'Lato', sans-serif;
+    font-size: 1rem;
+    color: #DDDDDD; /* Gris muy claro para lectura */
+    line-height: 1.5;
+}
+
+/* =========================================
+   RESPONSIVE PARA TIMELINE
+   ========================================= */
+@media(max-width: 991px){
+    /* En tablet y móvil, ocultamos la línea horizontal 
+       porque los círculos se apilan verticalmente */
+    .wrapper-linea::before {
+        display: none;
+    }
+    
+    .item-timeline {
+        margin-bottom: 50px;
+    }
+}
+
+/* =========================================
+   SECCIÓN TIMELINE (FONDO OSCURO + ICONOS)
+   ========================================= */
+
+.seccion-timeline {
+    /* Fondo con imagen oscurecida */
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+        url('../imagenes/volante.jpg'); /* <--- RECUERDA PONER TU FOTO AQUÍ */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Efecto Parallax */
+    color: white;
+    /* Centrar contenido si no usamos contenedor */
+    text-align: center; 
+}
+
+/* Encabezado */
+.encabezado-timeline {
+    max-width: 800px;
+    margin: 0 auto 50px auto; /* Centrado automático */
+    padding: 0 15px; /* Un poco de margen lateral por seguridad */
+}
+
+/* Wrapper de la línea horizontal */
+.wrapper-linea {
+    position: relative;
+    padding-top: 20px;
+    /* Limitamos el ancho para que no se pegue a los bordes de la pantalla */
+    max-width: 1200px; 
+    margin: 0 auto;
+}
+
+/* LA LÍNEA HORIZONTAL (Detrás de los círculos) */
+.wrapper-linea::before {
+    content: '';
+    position: absolute;
+    top: 60px; /* Ajustado al centro de los círculos */
+    left: 10%; 
+    right: 10%; 
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.5); /* Línea blanca fina */
+    z-index: 1; 
+}
+
+/* Ítem Individual */
+.item-timeline {
+    position: relative;
+    z-index: 2; /* Encima de la línea */
+    padding: 0 15px;
+    margin-bottom: 30px;
+}
+
+/* El Círculo Blanco con Icono Rojo */
+.circulo-timeline {
+    width: 80px;
+    height: 80px;
+    background-color: #FFFFFF;
+    border: 4px solid var(--color-rojo);
+    border-radius: 50%;
+    margin: 0 auto 25px auto;
+    box-shadow: 0 0 20px rgba(230, 0, 0, 0.4);
+    
+    /* Centrar el icono */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Estilo del icono */
+    font-size: 2.5rem;
+    color: var(--color-rojo);
+}
+
+/* Tipografía */
+.item-timeline h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: #FFFFFF;
+}
+
+.item-timeline p {
+    font-family: 'Lato', sans-serif;
+    font-size: 1rem;
+    color: #DDDDDD;
+    line-height: 1.5;
+}
+
+/* =========================================
+   RESPONSIVE (MÓVIL)
+   ========================================= */
+@media(max-width: 991px){
+    /* Ocultamos la línea horizontal en pantallas pequeñas */
+    .wrapper-linea::before {
+        display: none;
+    }
+    
+    .item-timeline {
+        margin-bottom: 50px;
+    }
+}
+
+/* =========================================
+   8. SECCIÓN DE CONTACTO (CORREGIDA)
+   ========================================= */
+
+.contact-section {
+    background-color: #FFFFFF;
+}
+
+/* Wrapper para centrar todo el bloque sin romper el grid */
+.contact-content-wrapper {
+    max-width: 1000px; /* Ancho máximo contenido */
+    margin: 0 auto;    /* Centrado horizontal */
+    width: 100%;
+}
+
+.contact-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+/* Títulos de las columnas */
+.contact-col-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-negro);
+    margin-bottom: 25px;
+    text-align: left; /* IMPORTANTE: Asegura que el título esté a la izquierda */
+}
+
+/* --- COLUMNA IZQUIERDA --- */
+.contact-col-left {
+    padding: 10px 20px 10px 0; /* Un poco de aire a la derecha */
+    text-align: left; /* IMPORTANTE */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.btn-contact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 25px;
+    border-radius: 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    width: 100%; 
+    max-width: 400px; /* Evita que sean gigantes en pantallas muy anchas */
+}
+
+.btn-contact i {
+    font-size: 1.5rem;
+    margin-right: 15px;
+}
+
+/* Estilos de botones */
+.btn-solid-red {
+    background-color: var(--color-rojo);
+    color: #FFFFFF;
+    border: 2px solid var(--color-rojo);
+    box-shadow: 0 5px 15px rgba(230, 0, 0, 0.3);
+}
+.btn-solid-red:hover {
+    background-color: var(--color-rojo-oscuro);
+    border-color: var(--color-rojo-oscuro);
+    transform: translateY(-3px);
+}
+
+.btn-outline-red {
+    background-color: transparent;
+    color: var(--color-rojo);
+    border: 2px solid var(--color-rojo);
+}
+.btn-outline-red:hover {
+    background-color: #FFF5F5;
+    transform: translateY(-3px);
+}
+
+/* --- COLUMNA DERECHA (CORREGIDA CON GRID) --- */
+.contact-col-right {
+    padding: 10px 0 10px 20px;
+}
+
+.info-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* AQUÍ ESTÁ EL CAMBIO CLAVE: Usamos Grid en lugar de Flex */
+.info-list li {
+    display: grid;
+    grid-template-columns: 50px 1fr; /* Columna 1: 50px fijos | Columna 2: El resto del espacio */
+    gap: 20px; /* Espacio exacto entre icono y texto */
+    align-items: start;
+    margin-bottom: 30px;
+    width: 100%; /* Asegura que ocupe todo el ancho */
+}
+
+/* Ajustamos el círculo del icono */
+.info-icon-circle {
+    width: 50px;
+    height: 50px;
+    background-color: #FFF0F0;
+    color: var(--color-rojo);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    /* Eliminamos márgenes porque 'gap' ya hace el trabajo */
+    margin: 0; 
+}
+
+/* El texto ahora tiene su espacio garantizado */
+.info-text {
+    text-align: left; /* Forzamos alineación a la izquierda */
+    min-width: 0; /* Evita que el texto se desborde */
+}
+
+.info-text strong {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.05rem;
+    color: var(--color-negro);
+    margin-bottom: 5px;
+}
+
+.info-text p {
+    font-family: 'Lato', sans-serif;
+    color: var(--color-texto-gris);
+    font-size: 1rem;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.link-rojo-small {
+    color: var(--color-rojo);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.link-negro {
+    color: var(--color-texto-gris);
+    text-decoration: none;
+    font-weight: 600;
+}
+.link-negro:hover { color: var(--color-rojo); }
+/* --- RESPONSIVE --- */
+@media(max-width: 768px){
+    .contact-col-left, .contact-col-right {
+        padding: 0;
+        text-align: center; /* En móvil sí centramos */
+        align-items: center;
+    }
+    .info-list li {
+        flex-direction: column; /* Icono arriba, texto abajo */
+        align-items: center;
+        text-align: center;
+    }
+    .info-icon-circle {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    .btn-contact {
+        margin: 0 auto; /* Centrar botones */
+    }
+    .contact-content-wrapper { padding: 0 15px; }
+}
+/* =========================================
+   8. COMPONENTES EXTRA (CONTACTO/FOOTER)
+   ========================================= */
+.texto-contacto { font-size: 1.1rem; margin-bottom: 30px; }
+.info-caja p { margin-bottom: 15px; font-size: 1.1rem; }
+
+footer { 
+    background: var(--color-negro); 
+    color: white; 
+    text-align: center; 
+    padding: 20px; 
+    margin-top: 40px; 
+}
+.footer-texto { font-family: 'Montserrat', sans-serif; }
+
+/* =========================================
+   9. MEDIA QUERIES (Responsive Móvil)
+   ========================================= */
+@media(max-width: 767px){
+    /* Header/Nav */
+    .nav-container { flex-direction: column; }
+    .menu-links { margin-top: 15px; padding: 0; }
+    .menu-links li { margin: 0 10px; }
+    
+    /* Hero Banner */
+    .hero-section, .hero-container { min-height: 500px; }
+    .hero-content { margin-left: 0; padding: 30px 20px; text-align: center; }
+    .hero-title { font-size: 2.5rem; }
+    .hero-description { margin: 0 auto 30px auto; }
+}
